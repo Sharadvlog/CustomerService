@@ -1,5 +1,6 @@
 package com.fda.customer.service.controller;
 
+import com.fda.customer.service.dto.CustomerDto;
 import com.fda.customer.service.entity.Customer;
 import com.fda.customer.service.service.CustomerService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,7 +26,7 @@ public class CustomerController {
 
     @GetMapping("/")
     public ResponseEntity<?> getCustomers() {
-        List<Customer> customers = customerService.getAllCustomers();
+        List<CustomerDto> customers = customerService.getAllCustomers();
         if (customers.isEmpty()) {
             return ResponseEntity.status(HttpStatus.NO_CONTENT)
                     .body("No customers found in the database.");

@@ -26,12 +26,21 @@ public class Address {
     @Column(name = "created_at")
     private LocalDate createdAt;
 
-//    @Column(name = "customer_id" , insertable = false, updatable = false)
-//    private String customerId;
-
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "customer_id", nullable  = false)
     private Customer customer;
 
 
+    @Override
+    public String toString() {
+        return "Address{" +
+                "addressId='" + addressId + '\'' +
+                ", line1='" + line1 + '\'' +
+                ", area='" + area + '\'' +
+                ", city='" + city + '\'' +
+                ", pinCode='" + pinCode + '\'' +
+                ", createdAt=" + createdAt +
+                ", customer=" + customer +
+                '}';
+    }
 }

@@ -1,32 +1,27 @@
-package com.fda.customer.service.entity;
+package com.fda.customer.service.dto;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import jakarta.persistence.*;
+import jakarta.persistence.Column;
+import lombok.Builder;
 import lombok.Data;
-import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.ToString;
+import org.springframework.stereotype.Component;
 
 import java.time.LocalDate;
-import java.util.List;
 
-@Entity
-@Table(name = "customers")
-@ToString
-public class Customer {
-    @Id
-    @Column(name = "customer_id")
+@Component
+@NoArgsConstructor
+public class CustomerDto {
+
     private String customerId;
-    @Column(name = "name")
-    private String name;
-    @Column(name = "email")
-    private String email;
-    @Column(name = "phone")
-    private String phone;
-    @Column(name = "created_at")
-    private LocalDate createdAt;
 
-    @OneToMany(mappedBy = "customer", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    private List<Address> addresses;
+    private String name;
+
+    private String email;
+
+    private String phone;
+
+    private LocalDate createdAt;
 
     public String getCustomerId() {
         return customerId;
@@ -68,17 +63,9 @@ public class Customer {
         this.createdAt = createdAt;
     }
 
-    public List<Address> getAddresses() {
-        return addresses;
-    }
-
-    public void setAddresses(List<Address> addresses) {
-        this.addresses = addresses;
-    }
-
     @Override
     public String toString() {
-        return "Customer{" +
+        return "CustomerDto{" +
                 "customerId='" + customerId + '\'' +
                 ", name='" + name + '\'' +
                 ", email='" + email + '\'' +
