@@ -7,6 +7,7 @@ import com.fda.customer.service.service.CustomerService;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class CustomerServiceImpl implements CustomerService {
@@ -40,5 +41,10 @@ public class CustomerServiceImpl implements CustomerService {
     @Override
     public Customer save(Customer customer) {
         return customerRepository.save(customer);
+    }
+
+    @Override
+    public Optional<Customer> findById(Integer customerId) {
+        return customerRepository.findById(customerId);
     }
 }

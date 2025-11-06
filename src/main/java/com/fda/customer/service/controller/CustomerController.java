@@ -52,4 +52,27 @@ public class CustomerController {
         }
     }
 
+    @PutMapping("/{customer_id}")
+    public ResponseEntity<?> updateCustomer(@PathVariable("customer_id") String customerId, @RequestBody Customer updatedCustomer) {
+        try {
+            Optional<Customer> existingCustomerOpt = customerService.findById(Integer.valueOf(customerId));
+
+            if (existingCustomerOpt.isEmpty()) {
+                return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Customer with ID " + customerId + " not found.");
+            }
+
+            Customer existingCustomer = existingCustomerOpt.get();
+            existingCustomer.setName(updatedCustomer.getName());
+            existingCustomer.setEmail(updatedCustomer.getEmail());
+            existingCustomer.setPhone(updatedCustomer.getPhone());
+            existingCustomer.setAddresses(updatedCustomer.getAddresses());
+
+            Customer savedCustomer = customerService.save(existingCustomer);
+
+            return ResponseEntity.status(HttpStatus.OK).body(savedCustomer);
+
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Error updating customer: " + e.getMessage());
+        }
+    }
 }

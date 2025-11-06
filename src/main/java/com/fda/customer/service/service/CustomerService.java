@@ -5,6 +5,7 @@ import com.fda.customer.service.entity.Customer;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public interface CustomerService {
@@ -13,4 +14,6 @@ public interface CustomerService {
     boolean existById(Integer cutomerId);
 
     Customer save(Customer customer);
+
+    Optional<Customer> findById(Integer customerId);
 }
