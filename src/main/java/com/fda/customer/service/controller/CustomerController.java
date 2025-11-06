@@ -75,4 +75,19 @@ public class CustomerController {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Error updating customer: " + e.getMessage());
         }
     }
+
+    @GetMapping("/{customer_id}")
+    public ResponseEntity<?> getCustomerById(@PathVariable("customer_id") String customerId) {
+        try {
+            Optional<Customer> customerOpt = customerService.findById(Integer.valueOf(customerId));
+            if (customerOpt.isEmpty()) {
+                return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Customer with ID " + customerId + " not found.");
+            }
+            return ResponseEntity.ok(customerOpt.get());
+
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Error retrieving customer: " + e.getMessage());
+        }
+    }
+
 }
