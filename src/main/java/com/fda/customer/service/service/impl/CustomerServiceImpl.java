@@ -31,4 +31,14 @@ public class CustomerServiceImpl implements CustomerService {
                 }
                 ).toList();
     }
+
+    @Override
+    public boolean existById(Integer cutomerId) {
+        return customerRepository.existsById(cutomerId);
+    }
+
+    @Override
+    public Customer save(Customer customer) {
+        return customerRepository.save(customer);
+    }
 }

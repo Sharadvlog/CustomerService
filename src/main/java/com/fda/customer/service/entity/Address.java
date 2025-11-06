@@ -11,7 +11,7 @@ import java.time.LocalDate;
 public class Address {
     @Id
     @Column(name = "address_id")
-    private String addressId;
+    private Integer addressId;
 
     @Column(name = "line1")
     private String line1;

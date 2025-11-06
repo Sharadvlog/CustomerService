@@ -13,7 +13,7 @@ import java.time.LocalDate;
 @NoArgsConstructor
 public class CustomerDto {
 
-    private String customerId;
+    private Integer customerId;
 
     private String name;
 
@@ -23,11 +23,11 @@ public class CustomerDto {
 
     private LocalDate createdAt;
 
-    public String getCustomerId() {
+    public Integer getCustomerId() {
         return customerId;
     }
 
-    public void setCustomerId(String customerId) {
+    public void setCustomerId(Integer customerId) {
         this.customerId = customerId;
     }
 

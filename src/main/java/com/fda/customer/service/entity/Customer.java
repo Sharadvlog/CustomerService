@@ -15,7 +15,7 @@ import java.util.List;
 public class Customer {
     @Id
     @Column(name = "customer_id")
-    private String customerId;
+    private Integer customerId;
     @Column(name = "name")
     private String name;
     @Column(name = "email")
@@ -28,11 +28,11 @@ public class Customer {
     @OneToMany(mappedBy = "customer", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<Address> addresses;
 
-    public String getCustomerId() {
+    public Integer getCustomerId() {
         return customerId;
     }
 
-    public void setCustomerId(String customerId) {
+    public void setCustomerId(Integer customerId) {
         this.customerId = customerId;
     }
 
